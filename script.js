@@ -93,31 +93,22 @@ function animateCounter(element, target, duration) {
     }, 16);
 }
 
-// Form Submission Handler
+// Form Submission Handler - Compatível com Formspree
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Simula envio do formulário
-    const submitButton = contactForm.querySelector('.submit-button');
-    const originalText = submitButton.textContent;
-    
-    submitButton.textContent = 'Enviando...';
-    submitButton.disabled = true;
-    
-    setTimeout(() => {
-        submitButton.textContent = 'Mensagem Enviada!';
-        submitButton.style.background = '#10b981';
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        const submitButton = contactForm.querySelector('.submit-button');
+        const originalText = submitButton.textContent;
         
-        setTimeout(() => {
-            submitButton.textContent = originalText;
-            submitButton.style.background = '';
-            submitButton.disabled = false;
-            contactForm.reset();
-        }, 2000);
-    }, 1500);
-});
+        // Mostra feedback visual ao usuário
+        submitButton.textContent = 'Enviando...';
+        submitButton.disabled = true;
+        
+        // O formulário será enviado normalmente pelo Formspree
+        // Após o envio, o Formspree irá redirecionar ou exibir mensagem de sucesso
+    });
+}
 
 // Efeito de hover nos cards com cursor
 document.querySelectorAll('.product-card, .service-card, .gallery-item').forEach(card => {
@@ -182,11 +173,20 @@ window.addEventListener('load', () => {
 });
 
 // Previne comportamento padrão em links de demonstração
-document.querySelectorAll('a[href="#"]').forEach(link => {
+document.querySelectorAll('a[href="#"]:not(.social-link)').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
     });
 });
+
+// WhatsApp Floating Button - Adiciona tracking opcional
+const whatsappBtn = document.querySelector('.whatsapp-floating');
+if (whatsappBtn) {
+    whatsappBtn.addEventListener('click', () => {
+        console.log('WhatsApp button clicked');
+        // Aqui você pode adicionar tracking de eventos (Google Analytics, etc)
+    });
+}
 
 console.log('%c Papelaria ARTFAT ', 'background: linear-gradient(90deg, #2563eb, #ec4899); color: white; font-size: 20px; padding: 10px;');
 console.log('%c Site desenvolvido com amor \u2764\ufe0f', 'color: #ec4899; font-size: 14px;');
