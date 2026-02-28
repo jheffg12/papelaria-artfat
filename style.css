@@ -15,6 +15,7 @@
     --light: #f9fafb;
     --white: #ffffff;
     --gray: #6b7280;
+    --whatsapp-green: #25D366;
 }
 
 html {
@@ -592,6 +593,44 @@ section {
     color: var(--gray);
 }
 
+/* Botão Flutuante do WhatsApp */
+.whatsapp-floating {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: var(--whatsapp-green);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.whatsapp-floating:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+}
+
+@keyframes pulse {
+    0% { 
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); 
+    }
+    70% { 
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); 
+    }
+    100% { 
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); 
+    }
+}
+
 /* Scroll to Top Button */
 .scroll-top {
     position: fixed;
@@ -697,6 +736,19 @@ section {
     .contact-grid {
         grid-template-columns: 1fr;
     }
+
+    .whatsapp-floating {
+        bottom: 80px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.8rem;
+    }
+
+    .scroll-top {
+        bottom: 20px;
+        right: 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -711,5 +763,11 @@ section {
 
     .float-item {
         font-size: 2rem;
+    }
+
+    .whatsapp-floating {
+        width: 50px;
+        height: 50px;
+        font-size: 1.6rem;
     }
 }
